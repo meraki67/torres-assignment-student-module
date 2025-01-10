@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { StudentService } from './student.service';
 import { Student } from './student.entity';
 
@@ -10,4 +10,9 @@ export class StudentController {
   async create(@Body() studentData: Partial<Student>): Promise<Student> {
     return this.studentService.createStudent(studentData);
   }
+
+  @Get()
+    async findAll(): Promise<Student[]> {
+    return this.studentService.getAllStudents();
+    }
 }

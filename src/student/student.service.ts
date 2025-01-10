@@ -14,4 +14,8 @@ export class StudentService {
   createStudent(student: Partial<Student>) {
     return this.studentRepository.save(student);
   }
+
+  async getAllStudents(): Promise<Student[]> {
+    return await this.studentRepository.find();
+  }
 }
