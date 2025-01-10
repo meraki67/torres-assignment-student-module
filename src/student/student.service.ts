@@ -10,12 +10,17 @@ export class StudentService {
     private readonly studentRepository: Repository<Student>,
   ) {}
 
-  // Add methods for CRUD operations
-  createStudent(student: Partial<Student>) {
-    return this.studentRepository.save(student);
+  async createStudent(studentData: Partial<Student>): Promise<Student> {
+    const student = this.studentRepository.create(studentData);
+    return await this.studentRepository.save(student);
   }
 
   async getAllStudents(): Promise<Student[]> {
     return await this.studentRepository.find();
+  }
+  
+  async updateStudent(id: number, updateData: Partial<Student>): Promise<Student> {
+    await this.studentRepository.update(id, updateData);
+    return this.studentRepository.findOneBy({ id });
   }
 }
