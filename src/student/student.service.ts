@@ -23,4 +23,8 @@ export class StudentService {
     await this.studentRepository.update(id, updateData);
     return this.studentRepository.findOneBy({ id });
   }
+
+  async deleteStudent(id: number): Promise<void> {
+    await this.studentRepository.delete(id);
+  }
 }
